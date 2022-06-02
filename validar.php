@@ -1,32 +1,38 @@
 <?php
 
-    $email = $_POST["email"];
-    $password = $_POST["password"];
+$email = $_POST["email"];
+$password = $_POST["password"];
+$role = $_POST["role"];
+session_start();
 
-    session_start();
-    
 
-    include('db.php');
+include('db.php');
 
-    $consulta = "SELECT * FROM usuarios where email = '$email' and password = '$password'";
-    $resultado =mysqli_query($conexion,$consulta);
+$consulta = "SELECT * FROM usuarios where email = '$email' and password = '$password'";
+$resultado =mysqli_query($conexion,$consulta);
 
-    $filas= mysqli_num_rows($resultado);
+$row = mysqli_fetch_array($resultado);
+$role = $row['role'];
+$filas= mysqli_num_rows($resultado);
 
-    if($filas > 0){
-        $_SESSION['usuario'] = $email;
-        header("Location:home.php");
-        exit();
+if($filas > 0){
+    $_SESSION['usuario'] = $email;
+    if ($role==0) {
+        header("Location: admin/home.php");
     }else{
+        header("Location: admin/admin.php");
+    }
+    exit();
+}else{
 
-        echo '
+    echo '
         
             <script>
-                alert("The username or password is incorrect");
+                alert("The email or password is incorrect");
                 window.location = "../index.php";
             </script>
         ';
-        exit();
-    }
-    mysqli_free_result($resultado);
-    mysqli_close($conexion);
+    exit();
+}
+mysqli_free_result($resultado);
+mysqli_close($conexion);

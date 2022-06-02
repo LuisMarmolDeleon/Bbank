@@ -7,7 +7,7 @@
         echo '
             <script>
                 alert("Por favor debes iniciar sesión") 
-                window.location = "../cyberwarrior/index.php"; 
+                window.location = "/login.php"; 
             </script>
         ';
         
