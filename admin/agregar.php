@@ -1,18 +1,22 @@
 <?php
 
-include 'db.php';
+include '../db.php';
 
 $nombre = $_POST['nombre'];
 $email = $_POST['email'];
 $usuario = $_POST['usuario'];
 $password = $_POST['password'];
-$role = $_POST['role'];
+$role = $_POST['rol'];
 $status = $_POST['status'];
 $id = rand(0,100000);
-$query = "INSERT INTO usuarios (nombre, email, usuario, password, role,ID_user,status) 
-    VALUES ('$nombre', '$email', '$usuario', '$password', 0, '$id', $status)";
+$query = "INSERT INTO usuarios (nombre, email, usuario, password, role,ID_user,Status) 
+    VALUES ('$nombre', '$email', '$usuario', '$password',$role,$id,$status)";
 
-$saving = "INSERT INTO savings(ID_owner,Balance) VALUES ('$id',100)";
+//if role is equal to 0, then it is a client
+if($role == 0){
+    $saving = "INSERT INTO savings(ID_owner,Balance) VALUES ('$id',100)";
+    $saving_query = mysqli_query($conexion, $saving);
+    }
 
 $verificarCorreo = mysqli_query($conexion,"SELECT * FROM usuarios WHERE email = '$email'");
 $verificarUsuario = mysqli_query($conexion,"SELECT * FROM usuarios WHERE usuario = '$usuario'");
@@ -45,6 +49,8 @@ if($ejecutar){
     echo '
             <script>
                 alert("User created successfully!")
+                //go back to admin page
+                window.location.href="admin.php";
             </script>
         
         ';
@@ -52,6 +58,8 @@ if($ejecutar){
     echo '
             <script>
                 alert("Oh no! Something went wrong!")
+                  window.location.href="../admin.php";
+
             </script>
         
         ';

@@ -6,11 +6,10 @@
     $email = $_POST['email'];
     $usuario = $_POST['usuario'];
     $password = $_POST['password'];
-    $rol = 2;
-    $status = 1;
-
-    $query = "INSERT INTO usuarios (nombre, email, usuario, password, rol, status) 
-    VALUES ('$nombre', '$email', '$usuario', '$password', '$rol', '$status')";
+    $role = 0;
+    $id = rand(0,100000);
+    $query = "INSERT INTO usuarios (nombre, email, usuario, password, role,ID_user,Status) 
+    VALUES ('$nombre', '$email', '$usuario', '$password',$role,$id,1)";
 
     //verificar que el correo no se repita en la base de datos
 

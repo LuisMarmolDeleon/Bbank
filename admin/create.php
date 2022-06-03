@@ -91,7 +91,7 @@ die();
                 <label for="status">Status:</label>
                 <select name="status" class="itext">
                 <option value="1">Active</option>
-                <option value="0">Desactivate</option>
+                <option value="0">Inactive</option>
                 </select><br>
                 <input type="submit" class="btnRegistrar" value="Register"/>
             </form>

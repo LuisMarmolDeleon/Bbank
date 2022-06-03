@@ -2,13 +2,16 @@
 
     include 'db.php';
 
-    $nombre = $_POST['nombre'];
-    $email = $_POST['email'];
-    $usuario = $_POST['usuario'];
-    $password = $_POST['password'];
+$nombre = $_POST['nombre'];
+$email = $_POST['email'];
+$usuario = $_POST['usuario'];
+$password = $_POST['password'];
+$role = 0;
+$id = rand(0,100000);
+$query = "INSERT INTO usuarios (nombre, email, usuario, password, role,ID_user,Status) 
+    VALUES ('$nombre', '$email', '$usuario', '$password',$role,$id,1)";
 
-    $query = "INSERT INTO usuarios (nombre, email, usuario, password) 
-    VALUES ('$nombre', '$email', '$usuario', '$password')";
+$saving = "INSERT INTO savings(ID_owner,Balance) VALUES ('$id',100)";
 
     //verificar que el correo no se repita en la base de datos
 
@@ -44,7 +47,7 @@
         echo '
             <script>
                 alert("the user has been registered successfully");
-                window.location = "../cyberwarrior/index.php";
+                window.location = "../solution/index.html";
             </script>
         
         ';
