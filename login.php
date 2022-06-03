@@ -13,9 +13,6 @@
     <link rel= "stylesheet" href="assets/css/estilos.css">
 </head>
 <body>
-<video autoplay muted loop id="myVideo">
-    <source src="images/background.mp4" type="video/mp4" style="z-index: -100000; ">
-</video>
     <main>
         <div class="contenedor__todo">
             <div class="caja__trasera">
